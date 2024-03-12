@@ -1,5 +1,9 @@
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.*;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import io.restassured.RestAssured;
@@ -86,6 +90,26 @@ public class TesteGET {
 			.body("data.last_name", is("Weaver"))
 			.body("data.avatar", is("https://reqres.in/img/faces/2-image.jpg"))
 			;		
+	}
+	
+	@Test
+	public void downloadAvatar() throws IOException {		
+		byte[] image = given()
+			.spec(reqSpec)
+		.when()
+			.get("https://reqres.in/img/faces/2-image.jpg")
+		.then()
+			.spec(resSpec)
+			.extract().asByteArray();		
+		;
+		File imagem = new File("src/main/resources/file.jpg");
+		OutputStream out = new FileOutputStream(imagem);
+		out.write(image);
+		out.close();
+		
+		/*Atualizar pasta src/main/resources para visualizar o Avatar do Ususário */
+			
+			
 	}
 		
 	@Test
