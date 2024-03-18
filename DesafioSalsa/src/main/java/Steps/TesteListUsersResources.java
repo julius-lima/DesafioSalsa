@@ -1,3 +1,4 @@
+package Steps;
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.*;
 import java.io.File;
@@ -14,7 +15,7 @@ import io.restassured.specification.RequestSpecification;
 import io.restassured.specification.ResponseSpecification;
 
 
-public class TesteGET {
+public class TesteListUsersResources {
 	
 	public static RequestSpecification reqSpec;
 	public static ResponseSpecification resSpec;
@@ -41,7 +42,7 @@ public class TesteGET {
 	}
 	
 	@Test
-	public void listUsers() {		
+	public void listUsers() {	//Deve listar usuário da pagina 1	
 		given()
 			.spec(reqSpec)
 		.when()
@@ -60,7 +61,7 @@ public class TesteGET {
 			;
 	}
 	@Test
-	public void listUsersPage2() {		
+	public void listUsersPage2() {		//Deve listar usuário da pagina 2
 		given()
 			.spec(reqSpec)
 		.when()
@@ -77,7 +78,7 @@ public class TesteGET {
 	}
 			
 	@Test
-	public void singleUser() {		
+	public void singleUser() {		//Deve listar usuário 2
 		given()
 			.spec(reqSpec)
 		.when()
@@ -113,7 +114,7 @@ public class TesteGET {
 	}
 		
 	@Test
-	public void userNotFound() {		
+	public void userNotFound() {		//Deve sinalizar que usuário não foi encontrado
 		given()
 			.spec(reqSpec)
 		.when()
@@ -125,7 +126,7 @@ public class TesteGET {
 		
 		
 	@Test
-	public void listResources() {		
+	public void listResources() {		//Deve listar recursos da pagina 1
 		given()
 			.spec(reqSpec)
 		.when()
@@ -142,7 +143,7 @@ public class TesteGET {
 	}
 	
 	@Test
-	public void listResourcesPage2() {		
+	public void listResourcesPage2() {		//Deve listar recursos da pagina 2
 		given()
 			.spec(reqSpec)
 		.when()
@@ -159,7 +160,7 @@ public class TesteGET {
 	}
 		
 	@Test
-	public void singleResource() {		
+	public void singleResource() {		//Deve listar recursos 2
 		given()
 			.spec(reqSpec)
 		.when()
@@ -175,7 +176,7 @@ public class TesteGET {
 	}
 		
 	@Test
-	public void resourceNotFound() {		
+	public void resourceNotFound() {		//Deve sinalizar que recurso não foi encontrado
 		given()
 			.spec(reqSpec)
 		.when()

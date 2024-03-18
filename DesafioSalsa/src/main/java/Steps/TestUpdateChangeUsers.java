@@ -1,3 +1,4 @@
+package Steps;
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.*;
 import static org.hamcrest.Matchers.notNullValue;
@@ -6,7 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import io.restassured.RestAssured;
 
-public class TestPost {	
+public class TestUpdateChangeUsers {	
 
 	@BeforeAll
 	public static void setup() {
@@ -15,7 +16,7 @@ public class TestPost {
 	}
 	
 	@Test
-	public void createUsers() {		
+	public void createUsers() {		//Deve criar usuário com sucesso
 		given()
 			.log().all()
 			.contentType("application/json")
@@ -32,7 +33,7 @@ public class TestPost {
 	}
 	
 	@Test
-	public void updateUsers() {		
+	public void updateUsers() {		//Deve alterar usuário com sucesso
 		given()
 			.log().all()
 			.contentType("application/json")
@@ -48,7 +49,7 @@ public class TestPost {
 	}
 	
 	@Test
-	public void updateParcialUser() {
+	public void partiallyUpdateUser() { //Deve alterar parcialmente o usuário com sucesso
 		given()
 			.log().all()
 			.contentType("application/json")
@@ -62,7 +63,7 @@ public class TestPost {
 	}
 	
 	@Test
-	public void deleteUser() {
+	public void deleteUser() { //Deve deletar o usuário
 		given()
 			.log().all()
 		.when()

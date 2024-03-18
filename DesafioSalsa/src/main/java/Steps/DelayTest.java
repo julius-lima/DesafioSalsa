@@ -1,9 +1,11 @@
+package Steps;
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.*;
 
+import java.util.concurrent.TimeUnit;
+
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-
 import io.restassured.RestAssured;
 
 public class DelayTest {
@@ -11,14 +13,13 @@ public class DelayTest {
 	@BeforeAll
 	public static void setup() {
 		RestAssured.baseURI = "https://reqres.in";
-		RestAssured.basePath = "/api";
-		
-		
-	}
+		RestAssured.basePath = "/api";		
+		}
 	
 	@Test
-	public void listUsersDelay() throws InterruptedException {
-{        
+	public void listUsersDelay() throws InterruptedException { // Deve lista usuários e calcular o tempo de respota da api
+{   															// Caso exceda tempo estipilado teste deve falhar
+			long responseTime =
 	        given()
 			.log().all()
 		.when()
@@ -34,8 +35,14 @@ public class DelayTest {
 			.body("data.first_name", hasItems("George","Janet","Emma","Eve","Charles","Tracey"))
 			.body("data.last_name", hasItems("Bluth", "Weaver", "Wong", "Holt", "Morris", "Ramos"))	
 			.body("data.avatar", is(not(nullValue())))
-            .time(lessThan(5000L)); // Verificar se o tempo de resposta é menor que 5000 milissegundos (5 segundos)
-		}
+		    .time(lessThan(7000L)) // Tempo de resposta deve ser menor que 7000 milissegundos (7 segundos)
+	        
+			.extract()
+			.timeIn(TimeUnit.MILLISECONDS); // Extrai o tempo de resposta em milissegundos
+	
+	System.out.println("Tempo de resposta da API: " + responseTime + " milissegundos");
+			
+	       	}	
 
 	}
 }

@@ -1,3 +1,4 @@
+package Steps;
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.*;
 import java.util.HashMap;
@@ -7,7 +8,7 @@ import org.junit.jupiter.api.Test;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 
-public class LoginTest {
+public class UserLoginTest {
 	
 	@BeforeAll
 	public static void setup() {
@@ -16,7 +17,7 @@ public class LoginTest {
 	}
 	
 	@Test
-	public void loginSuccessful() {
+	public void loginSuccessful() { // Deve logar Usuário com sucesso
 		
 		Map<String, String> login	= new HashMap<String, String>();
 		login.put("email", "eve.holt@reqres.in");
@@ -37,7 +38,7 @@ public class LoginTest {
 		}
 	
 	@Test
-	public void loginUnsuccessful() {		
+	public void loginUnsuccessful() {		// Deve falhar em logar Usuário
 		Map<String, String> login	= new HashMap<String, String>();
 		login.put("email", "peter@klaven");
 		login.put("password", "");
